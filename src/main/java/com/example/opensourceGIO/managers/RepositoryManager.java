@@ -1,5 +1,7 @@
 package com.example.opensourceGIO.managers;
 
+import com.example.opensourceGIO.config.ApplicationProperties;
+import com.example.opensourceGIO.config.GithubProperties;
 import com.example.opensourceGIO.models.Issue;
 import com.example.opensourceGIO.models.Repository;
 import com.example.opensourceGIO.services.GithubClient;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
@@ -28,14 +31,17 @@ public class RepositoryManager {
 
     private final GithubClient githubClient;
 
+    private final ApplicationProperties applicationProperties;
+
     public void importRepository(String organization, String repository) {
         this.repositoryService.create(organization, repository);
     }
 
     @Async
     public void importIssues(Repository repository) {
+        int schedulerFrequencyInMinutes = applicationProperties.getImportFrequency() / 60000;
         LocalDate sinceYesterday =
-                LocalDate.ofInstant(Instant.now().minus(1, ChronoUnit.DAYS), ZoneId.systemDefault());
+                LocalDate.ofInstant(Instant.now().minus(schedulerFrequencyInMinutes, ChronoUnit.MINUTES), ZoneOffset.UTC);
 
         GithubIssueResponse[] githubIssueResponses = this.githubClient.listIssues
                 (repository.getOrganization(), repository.getRepository(), sinceYesterday);

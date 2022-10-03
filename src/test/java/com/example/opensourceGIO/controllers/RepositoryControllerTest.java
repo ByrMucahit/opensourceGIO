@@ -39,11 +39,11 @@ public class RepositoryControllerTest {
 
     @Test
     public void it_should_list_repositories() throws Exception {
-        Repository repository = Repository.builder().organization("mucahit").repository("youcontribute").build();
+        Repository repository = Repository.builder().organization("mucahit").repository("opensourceGIO").build();
         given(this.repositoryService.list()).willReturn(Collections.singletonList(repository));
 
         this.mockMvc.perform(get("/repositories")).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("youcontribute"))
+                .andExpect(jsonPath("$[0].name").value("opensourceGIO"))
                 .andExpect(jsonPath("$[0].organisation").value("mucahit"));
     }
 
