@@ -23,6 +23,8 @@ public class Issue {
     @GenericGenerator(strategy = "native", name = "native")
     private Integer id;
 
+    private long githubIssueId;
+
     private String title;
 
     @Column(columnDefinition = "text")
