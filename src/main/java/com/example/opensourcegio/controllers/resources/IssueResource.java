@@ -14,6 +14,7 @@ public class IssueResource {
     private Long githubIssueId;
     private String title;
     private String body;
+    private String url;
 
     public static IssueResource createFor(Issue issue) {
         return IssueResource.builder().
@@ -21,7 +22,8 @@ public class IssueResource {
                 title(
                 issue.getTitle()).
                 body(issue.getBody()).
-                githubIssueId(issue.getGithubIssueId()).build();
+                githubIssueId(issue.getGithubIssueId()).
+                url(issue.getUrl()).build();
     }
 
     public static List<IssueResource> createFor(List<Issue> issues) {

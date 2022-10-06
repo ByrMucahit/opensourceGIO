@@ -25,7 +25,7 @@ public class GithubClient {
     }
 
     public GithubIssueResponse[] listIssues(String owner, String repository, LocalDate since) {
-        String issuesUrl = String.format("%s/repos/%s/%s/issues?since=%s",
+        String issuesUrl = String.format("%s/repos/%s/%s/issues?pulls=false?since=%s",
                 this.githubProperties.getApiUrl(),owner, repository, since.toString());
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "token "+this.githubProperties.getToken());

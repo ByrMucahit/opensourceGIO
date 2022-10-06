@@ -26,12 +26,16 @@ public class Issue {
     @GenericGenerator(strategy = "native", name = "native")
     private Integer id;
 
+    private long githubIssueNumber;
+
     private long githubIssueId;
 
     private String title;
 
     @Column(columnDefinition = "text")
     private String body;
+
+    private String url;
 
     @ManyToOne
     @JoinColumn
