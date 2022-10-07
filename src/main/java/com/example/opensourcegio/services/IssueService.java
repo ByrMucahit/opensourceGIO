@@ -6,8 +6,8 @@ import com.example.opensourcegio.repositories.IssueRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-
 import java.util.List;
 
 @Service
@@ -18,13 +18,17 @@ public class IssueService {
 
     private final RepositoryService repositoryService;
 
-    @Transactional
-    public void saveAll(List<Issue> issues) {
-        this.issueRepository.saveAll(issues);
+    public Issue findRandomIssue() {
+        return this.issueRepository.findRandomIssue().orElseThrow(() -> new EntityNotFoundException("No issue found"));
     }
 
     public List<Issue> list(Integer repsitoryId) {
         Repository repository = this.repositoryService.findById(repsitoryId);
         return this.issueRepository.findByRepository(repository);
+    }
+
+    @Transactional
+    public void saveAll(List<Issue> issues) {
+        this.issueRepository.saveAll(issues);
     }
 }
