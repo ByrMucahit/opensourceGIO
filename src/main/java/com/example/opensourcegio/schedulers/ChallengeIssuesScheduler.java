@@ -1,5 +1,6 @@
 package com.example.opensourcegio.schedulers;
 
+import com.example.opensourcegio.client.OneSignalClient;
 import com.example.opensourcegio.models.Issue;
 import com.example.opensourcegio.models.IssueChallenge;
 import com.example.opensourcegio.services.IssueChallengeService;
@@ -17,6 +18,8 @@ public class ChallengeIssuesScheduler {
     private final IssueService issueService;
     private final IssueChallengeService issueChallengeService;
 
+    private final OneSignalClient oneSignalClient;
+
     @Scheduled(fixedDelayString = "${application.challenge-frequency}")
     public void challengeIssueScheduler() {
         log.info("Challenge issue scheduler started");
@@ -25,7 +28,9 @@ public class ChallengeIssuesScheduler {
             return;
         }
         Issue randomIssue = this.issueService.findRandomIssue();
-        log.info("Found a random şssue {}", randomIssue.getGithubIssueId());
+        log.info("Found a random issue {}", randomIssue.getGithubIssueId());
         IssueChallenge issueChallenge = issueChallengeService.create(randomIssue);
+        oneSignalClient.sendNotification(issueChallenge.getId(), randomIssue.getTitle());
+        log.info("Challenge issue scheduler finished.");
     }
 }

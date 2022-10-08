@@ -14,4 +14,20 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationProperties {
     private Integer importFrequency;
     private String token;
+
+    private Integer challengeFrequency;
+
+    private OneSignalProperties oneSignalProperties;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static  class OneSignalProperties {
+
+        private String apiAuthKey;
+
+        private String newChallengeTemplateId;
+
+        private String appId;
+    }
 }

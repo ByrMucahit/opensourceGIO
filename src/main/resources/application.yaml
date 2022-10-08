@@ -13,3 +13,8 @@ github:
   token: ${GITHUB_API_TOKEN}
 application:
   import-frequency: ${ISSUES_IMPORT_FREQUENCY:60000}
+  challenge-frequency: ${ISSUES_CHALLENGE_FREQUENCY:10000}
+  one-signal:
+    app-id: ${ONE_SIGNAL_APP_ID}
+    api-auth-key: ${ONE_SIGNAL_API_AUTH_KEY}
+    new-challenge-template-id: "8d9bddfc-c4bf-413e-88d1-16e7aa43e1ae"

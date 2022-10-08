@@ -36,7 +36,7 @@ public class IssueChallenge {
     private Issue issue;
 
     @Enumerated(EnumType.STRING)
-    private IssueChallengeStatus issueChallengeStatus;
+    private IssueChallengeStatus status;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

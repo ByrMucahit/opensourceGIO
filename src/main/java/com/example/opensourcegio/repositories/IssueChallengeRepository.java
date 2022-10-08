@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IssueChallengeRepository extends PagingAndSortingRepository<IssueChallenge, Integer> {
-    Optional<IssueChallenge> findByStatusIn(List<IssueChallengeStatus> statuses);
+    Optional<IssueChallenge> findByStatusIn(List<IssueChallengeStatus> issueChallengeStatus);
 
-    @Override
     List<IssueChallenge> findAll();
 }

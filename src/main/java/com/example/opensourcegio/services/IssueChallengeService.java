@@ -5,6 +5,8 @@ import com.example.opensourcegio.models.IssueChallenge;
 import com.example.opensourcegio.models.IssueChallengeStatus;
 import com.example.opensourcegio.repositories.IssueChallengeRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,13 +15,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class IssueChallengeService {
     private final IssueChallengeRepository issueChallengeRepository;
 
     @Transactional
     public IssueChallenge create(Issue issue) {
-        IssueChallenge challenge = IssueChallenge.builder().issue(issue).issueChallengeStatus(
+        IssueChallenge challenge = IssueChallenge.builder().issue(issue).status(
                 IssueChallengeStatus.PENDING).build();
 
         return this.issueChallengeRepository.save(challenge);
@@ -33,7 +35,7 @@ public class IssueChallengeService {
         IssueChallenge issueChallenge = this.issueChallengeRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("Issue Challenge" + id + "not found"));
 
-        issueChallenge.setIssueChallengeStatus(status);
+        issueChallenge.setStatus(status);
         this.issueChallengeRepository.save(issueChallenge);
 
     }
