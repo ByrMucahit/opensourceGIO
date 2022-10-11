@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateChallengeStatusRequest {
 
-    private IssueChallengeStatus issueChallengeStatus;
+    private IssueChallengeStatus status;
 }

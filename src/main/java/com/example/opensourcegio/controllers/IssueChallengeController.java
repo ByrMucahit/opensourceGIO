@@ -20,6 +20,6 @@ public class IssueChallengeController {
 
     @PatchMapping("/{id}")
     public void updateStatus(@PathVariable("id") Integer id, @RequestBody UpdateChallengeStatusRequest request) {
-        this.issueChallengeService.updateStatus(id,request.getIssueChallengeStatus());
+        this.issueChallengeService.updateStatus(id,request.getStatus());
     }
 }

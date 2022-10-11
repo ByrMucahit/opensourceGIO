@@ -33,12 +33,12 @@ public class OneSignalClient {
         Button acceptButton = new Button();
         acceptButton.setId("accept");
         acceptButton.setText("Accept");
-        acceptButton.setUrl(String.format("http://localhost:4200/challenges/%d/accept", challengeId));
+        acceptButton.setUrl(String.format("http://localhost:4200/challenge/%d/accept", challengeId));
         Button rejectButton = new Button();
         rejectButton.setId("reject");
         rejectButton.setText("Reject");
         request.setWebButtons(Arrays.asList(acceptButton, rejectButton));
-        rejectButton.setUrl(String.format("http://localhost:4200/challenges/%d/accept/reject", challengeId));
+        rejectButton.setUrl(String.format("http://localhost:4200/challenge/%d/accept/reject", challengeId));
 
         request.setIncludedSegments(new ArrayList<>(){{add("Subscribed Users");}});
         OneSignal.createNotification(this.applicationProperties.getOneSignalProperties().getApiAuthKey(), request);
