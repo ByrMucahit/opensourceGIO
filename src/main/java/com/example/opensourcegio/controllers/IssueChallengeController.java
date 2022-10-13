@@ -1,6 +1,7 @@
 package com.example.opensourcegio.controllers;
 
 import com.example.opensourcegio.controllers.requests.UpdateChallengeStatusRequest;
+import com.example.opensourcegio.controllers.resources.IssueChallengeResource;
 import com.example.opensourcegio.models.IssueChallenge;
 import com.example.opensourcegio.services.IssueChallengeService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ public class IssueChallengeController {
     }
 
     @GetMapping
-    public List<IssueChallenge> list () {
-        return this.issueChallengeService.list();
+    public List<IssueChallengeResource> list () {
+        return IssueChallengeResource.createFor(this.issueChallengeService.list());
     }
 }

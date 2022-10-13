@@ -3,6 +3,7 @@ package com.example.opensourcegio.services;
 import com.example.opensourcegio.config.GithubProperties;
 import com.example.opensourcegio.services.models.GithubIssueResponse;
 
+import com.example.opensourcegio.services.models.GithubPullsResponse;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -32,6 +33,18 @@ public class GithubClient {
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity<GithubIssueResponse[]> exchange =
                 this.restTemplate.exchange(issuesUrl, HttpMethod.GET, request, GithubIssueResponse[].class);
+
+        return exchange.getBody();
+    }
+
+    public GithubPullsResponse[] listPullRequest(String owner, String repository) {
+        String pullRequestsUrl = String.format("%s/repos/%s/%s/pulls",
+                this.githubProperties.getApiUrl(),owner, repository);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "token "+this.githubProperties.getToken());
+        HttpEntity request = new HttpEntity(headers);
+        ResponseEntity<GithubPullsResponse[]> exchange =
+                this.restTemplate.exchange(pullRequestsUrl, HttpMethod.GET, request, GithubPullsResponse[].class);
 
         return exchange.getBody();
     }

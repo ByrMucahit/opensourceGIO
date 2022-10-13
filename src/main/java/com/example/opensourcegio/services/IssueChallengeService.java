@@ -1,5 +1,6 @@
 package com.example.opensourcegio.services;
 
+import com.example.opensourcegio.controllers.resources.IssueChallengeResource;
 import com.example.opensourcegio.models.Issue;
 import com.example.opensourcegio.models.IssueChallenge;
 import com.example.opensourcegio.models.IssueChallengeStatus;
