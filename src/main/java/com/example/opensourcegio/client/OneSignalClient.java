@@ -21,8 +21,8 @@ public class OneSignalClient {
 
     public void sendNotification(Integer challengeId, String issueTitle) {
         NotificationRequest request = new NotificationRequest();
-        request.setTemplateId(applicationProperties.getOneSignalProperties().getNewChallengeTemplateId());
-        OneSignal.createNotification(this.applicationProperties.getOneSignalProperties().getApiAuthKey(), request);
+        request.setTemplateId("8d9bddfc-c4bf-413e-88d1-16e7aa43e1ae");
+        OneSignal.createNotification("YjY3ZTI2NTktNmNiOC00M2Q3LWJiYWEtYzcyNjY2ZTU3ZmI1", request);
 
         request.setAppId(this.applicationProperties.getOneSignalProperties().getAppId());
         request.setAnyWeb(true);

@@ -25,7 +25,6 @@ public class ApplicationProperties {
     public static  class OneSignalProperties {
 
         private String apiAuthKey;
-
         private String newChallengeTemplateId;
 
         private String appId;

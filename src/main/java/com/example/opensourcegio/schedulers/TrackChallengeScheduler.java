@@ -20,15 +20,11 @@ import java.util.Arrays;
 @AllArgsConstructor
 public class TrackChallengeScheduler {
 
-    private final IssueService issueService;
-
     private final IssueChallengeService issueChallengeService;
-
-    private final OneSignalClient oneSignalClient;
 
     private final GithubClient githubClient;
 
-    @Scheduled(fixedDelayString = "${application.challenge-frequency}")
+    @Scheduled(fixedDelayString = "${application.challenge-tracking-frequency}")
     public void challengeIssueScheduler() {
         log.info("Track Challenge scheduler started");
         this.issueChallengeService.list().stream().filter(issueChallenge -> IssueChallengeStatus.ACCEPTED.
@@ -38,10 +34,12 @@ public class TrackChallengeScheduler {
                     Arrays.stream(this.githubClient.listPullRequest(repository.getOrganization()
                             , repository.getRepository()))
                             .filter(pull ->
-                                    "mucahit.byr".equals(pull.getUser().getLogin())
+                                    "ByrMucahit".equals(pull.getUser().getLogin()) && pull.getBody().contains(String.format("Fixes #%d", issueChallenge.getIssue().getGithubIssueNumber()))
                                             && "closed".equals(pull.getState()))
                             .findFirst()
-                            .ifPresent(pullResponse -> System.out.println("Issues resolved"));
+                            .ifPresent(pullResponse ->
+                                    this.issueChallengeService.updateStatus(issueChallenge.getId(), IssueChallengeStatus.COMPLETED)
+                            );
                 });
         log.info("Challenge issue scheduler finished.");
     }
