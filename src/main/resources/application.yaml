@@ -11,11 +11,17 @@ spring:
 github:
   api-url: https://api.github.com
   token: ${GITHUB_API_TOKEN}
+  authorize-url: https://github.com/login/oauth/authorize
+  access-token-url: https://github.com/login/oauth/access_token
+  client-id: ${GITHUB_CLIENT_ID}
+  client-secret: ${GITHUB_CLIENT_SECRET}
 application:
   import-frequency: ${ISSUES_IMPORT_FREQUENCY:60000}
   challenge-frequency: ${ISSUES_CHALLENGE_FREQUENCY:10000}
   challenge-tracking-frequency: ${CHALLENGE_TRACKING_FREQUENCY:10000}
-  one-signal:
-    app-id: ${ONE_SIGNAL_APP_ID}
-    api-auth-key: ${ONE_SIGNAL_API_AUTH_KEY}
-    new-challenge-template-id: "8d9bddfc-c4bf-413e-88d1-16e7aa43e1ae"
+one-signal:
+  app-id: ${ONE_SIGNAL_APP_ID}
+  api-auth-key: ${ONE_SIGNAL_API_AUTH_KEY}
+  new-challenge-template-id: "8d9bddfc-c4bf-413e-88d1-16e7aa43e1ae"
+
+

@@ -1,6 +1,7 @@
 package com.example.opensourcegio.services;
 
 import com.example.opensourcegio.config.GithubProperties;
+import com.example.opensourcegio.services.models.GithubAccessTokenRequest;
 import com.example.opensourcegio.services.models.GithubIssueResponse;
 
 import com.example.opensourcegio.services.models.GithubPullsResponse;
@@ -47,5 +48,18 @@ public class GithubClient {
                 this.restTemplate.exchange(pullRequestsUrl, HttpMethod.GET, request, GithubPullsResponse[].class);
 
         return exchange.getBody();
+    }
+
+    public  String getAuthorize() {
+        return String.format("%s?client_id=%s", githubProperties.getAuthorizeUrl(), githubProperties.getClientId());
+    }
+
+    public String getAccessToken(String code) {
+        GithubAccessTokenRequest accessTokenRequest = GithubAccessTokenRequest.builder()
+                .clientId(this.githubProperties.getClientId())
+                .clientSecret(this.githubProperties.getClientSecret())
+                .code(code).build();
+        HttpEntity<GithubAccessTokenRequest> request = new HttpEntity<>(accessTokenRequest);
+        this.restTemplate.exchange(this.githubProperties.getAccessTokenUrl(), HttpMethod.POST, request);
     }
 }

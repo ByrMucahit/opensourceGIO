@@ -14,4 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class GithubProperties {
     private String apiUrl;
     private String token;
+    private String authorizeUrl;
+    private String clientId;
+    private String clientSecret;
+    private String accessTokenUrl;
 }
