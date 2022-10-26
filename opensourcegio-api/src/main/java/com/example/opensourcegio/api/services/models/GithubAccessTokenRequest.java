@@ -1,4 +1,4 @@
-package com.example.opensourcegio.services.models;
+package com.example.opensourcegio.api.services.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
