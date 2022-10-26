@@ -1,1 +1,4 @@
 rootProject.name = 'opensourceGIO'
+
+include 'youcontribute-api'
+include 'youcontribute-worker'
