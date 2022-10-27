@@ -1,0 +1,5 @@
+application:
+  worker-type: ${WORKER_TYPE}
+
+server:
+  port : 8081
