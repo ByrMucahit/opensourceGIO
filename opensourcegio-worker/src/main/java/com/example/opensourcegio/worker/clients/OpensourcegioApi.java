@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 @AllArgsConstructor
 public class OpensourcegioApi {
 
