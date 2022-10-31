@@ -1,4 +1,4 @@
-package com.example.opensourcegio.worker.service;
+package com.example.opensourcegio.worker.worker;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,8 @@
 package com.example.opensourcegio.worker;
 
 import com.example.opensourcegio.worker.config.ApplicationProperty;
-import com.example.opensourcegio.worker.service.Worker;
-import com.example.opensourcegio.worker.service.WorkerFactory;
+import com.example.opensourcegio.worker.worker.Worker;
+import com.example.opensourcegio.worker.worker.WorkerFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
